@@ -10,12 +10,12 @@ import (
 )
 
 const (
-	OCI_ANNOTATION_DOCUMENT_NAME      = "org.opencontainers.image.spdx.name"
-	OCI_ANNOTATION_DATA_LICENSE       = "org.opencontainers.image.spdx.license"
-	OCI_ANNOTATION_DOCUMENT_NAMESPACE = "org.opencontainers.image.spdx.namespace"
-	OCI_ANNOTATION_SPDX_VERSION       = "org.opencontainers.image.spdx.version"
-	OCI_ANNOTATION_ANNOTATOR          = "org.opencontainers.image.spdx.annotator"
-	OCI_ANNOTATION_ANNOTATION_DATE    = "org.opencontainers.image.spdx.annotation_date"
+	OCI_ANNOTATION_DOCUMENT_NAME      = "org.spdx.name"
+	OCI_ANNOTATION_DATA_LICENSE       = "org.spdx.license"
+	OCI_ANNOTATION_DOCUMENT_NAMESPACE = "org.spdx.namespace"
+	OCI_ANNOTATION_SPDX_VERSION       = "org.spdx.version"
+	OCI_ANNOTATION_ANNOTATOR          = "org.spdx.annotator"
+	OCI_ANNOTATION_ANNOTATION_DATE    = "org.spdx.annotation_date"
 )
 
 // LoadSBOM loads an SPDX file into memory

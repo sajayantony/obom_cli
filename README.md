@@ -1,8 +1,8 @@
 # SBOM to OCI Artiafact
 
-This is a simple tool to convert a SBOM to a OCI Artifact and push to a target registry
+This is a simple tool to convert a SBOM to a OCI Artifact and push the SPFX to a target registry with annotations.
 
-# Build 
+## Build 
 
 ```bash
 go build -ldflags "-s -w" -o obom main.go
@@ -37,7 +37,8 @@ Document Namespace:    http://spdx.org/spdxdocs/spdx-example-444504E0-4F89-41D3-
 SPDX Version:          SPDX-2.3
 ================================================================================
 Adding ./examples/SPDXJSONExample-v2.3.spdx.json: sha256:2de3741a7be1be5f5e54e837524f2ec627fedfb82307dc004ae03b195abc092f
-Pushing localhost:5001/spdx/annotations:test sha256:9c517423daba83776785a018190b13689ef93146465a0dd66187e2f62239a805
+Pushing localhost:5001/spdx/annotations:test sha256:558e6788158981743d35f38b2a2668968c800fafddb0afcd681343832bd6e411
+
 ```
 
 ### View the OCI Artifact
@@ -63,10 +64,11 @@ $ oras manifest get localhost:5001/spdx/annotations:test --pretty
     }
   ],
   "annotations": {
-    "org.opencontainers.image.created": "2023-05-10T19:10:52Z",
-    "org.opencontainers.image.spdx.license": "CC0-1.0",
-    "org.opencontainers.image.spdx.name": "SPDX-Tools-v2.0",
-    "org.opencontainers.image.spdx.namespace": "http://spdx.org/spdxdocs/spdx-example-444504E0-4F89-41D3-9A0C-0305E82C3301",
-    "org.opencontainers.image.spdx.version": "SPDX-2.3"
+    "org.opencontainers.image.created": "2023-05-10T19:43:14Z",
+    "org.spdx.license": "CC0-1.0",
+    "org.spdx.name": "SPDX-Tools-v2.0",
+    "org.spdx.namespace": "http://spdx.org/spdxdocs/spdx-example-444504E0-4F89-41D3-9A0C-0305E82C3301",
+    "org.spdx.version": "SPDX-2.3"
   }
 }
+```
