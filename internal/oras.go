@@ -98,7 +98,6 @@ func PushFiles(filename string, reference string, spdx_annotations map[string]st
 	}
 
 	// 3. Copy from the file store to the remote repository
-
 	_, err = oras.Copy(ctx, fs, tag, repo, tag, oras.DefaultCopyOptions)
 	return err
 }
