@@ -1,12 +1,10 @@
-# SBOM to OCI Artiafact
+# SPDX to OCI Artiafact
 
 This is a simple tool to convert a SPDX to a OCI Artifact and push the SPFX to a target registry with annotations.
 
 ## Build
 
 Run `make` to build the binary or use the following command to build the binary.
-
-```bash
 
 ```bash
 go build -ldflags "-s -w" -o obom main.go
