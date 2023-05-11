@@ -3,6 +3,7 @@ package obom
 import (
 	"context"
 	"fmt"
+	"strings"
 
 	v1 "github.com/opencontainers/image-spec/specs-go/v1"
 	"oras.land/oras-go/v2"
@@ -75,19 +76,19 @@ func PushFiles(filename string, reference string, spdx_annotations map[string]st
 
 	// Check if registry has is localhost or starts with localhost:
 	reg := repo.Reference.Registry
-	if reg == "localhost" || reg[:10] == "localhost:" {
+	if strings.HasPrefix(reg, "localhost:") {
 		repo.PlainHTTP = true
 	}
 
 	// Note: The below code can be omitted if authentication is not required
 	// Check if username and passowrd are provided
-	if username == "" || password == "" {
+	if len(username) != 0 || len(password) != 0 {
 		repo.Client = &auth.Client{
 			Client: retry.DefaultClient,
 			Cache:  auth.DefaultCache,
 			Credential: auth.StaticCredential(reg, auth.Credential{
-				Username: "username",
-				Password: "password",
+				Username: username,
+				Password: password,
 			}),
 		}
 	}
