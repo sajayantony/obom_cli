@@ -20,6 +20,7 @@ const (
 	OCI_ANNOTATION_DATA_LICENSE       = "org.spdx.license"
 	OCI_ANNOTATION_DOCUMENT_NAMESPACE = "org.spdx.namespace"
 	OCI_ANNOTATION_SPDX_VERSION       = "org.spdx.version"
+	OCI_ANNOTATION_CREATION_DATE      = "org.spdx.created"
 	OCI_ANNOTATION_ANNOTATOR          = "org.spdx.annotator"
 	OCI_ANNOTATION_ANNOTATION_DATE    = "org.spdx.annotation_date"
 )
@@ -53,6 +54,7 @@ func PrintSBOMSummary(doc *v2_3.Document, desc *oci.Descriptor) {
 	fmt.Printf("DataLicense:           %s\n", doc.DataLicense)
 	fmt.Printf("Document Namespace:    %s\n", doc.DocumentNamespace)
 	fmt.Printf("SPDX Version:          %s\n", doc.SPDXVersion)
+	fmt.Printf("Creation Date:         %s\n", doc.CreationInfo.Created)
 	fmt.Printf("Packages:              %d\n", len(doc.Packages))
 	fmt.Printf("Files:                 %d\n", len(doc.Files))
 	fmt.Printf("Digest:                %s\n", desc.Digest)
@@ -106,6 +108,7 @@ func GetAnnotations(sbom *v2_3.Document) (map[string]string, error) {
 	annotations[OCI_ANNOTATION_DATA_LICENSE] = sbom.DataLicense
 	annotations[OCI_ANNOTATION_DOCUMENT_NAMESPACE] = sbom.DocumentNamespace
 	annotations[OCI_ANNOTATION_SPDX_VERSION] = sbom.SPDXVersion
+	annotations[OCI_ANNOTATION_CREATION_DATE] = sbom.CreationInfo.Created
 
 	return annotations, nil
 }
