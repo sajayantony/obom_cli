@@ -23,31 +23,33 @@ go get github.com/sajayantony/obom
 ### View the SBOM to validate it. 
 
 ```bash
-$ ./obom show -f ./examples/SPDXJSONExample-v2.3.spdx.json
-Successfully loaded ./examples/SPDXJSONExample-v2.3.spdx.json
+$ obom show -f ./examples/SPDXJSONExample-v2.3.spdx.json
 ================================================================================
-Some Attributes of the Document:
 Document Name:         SPDX-Tools-v2.0
 DataLicense:           CC0-1.0
 Document Namespace:    http://spdx.org/spdxdocs/spdx-example-444504E0-4F89-41D3-9A0C-0305E82C3301
 SPDX Version:          SPDX-2.3
+Packages:              4
+Files:                 5
+Digest:                sha256:2de3741a7be1be5f5e54e837524f2ec627fedfb82307dc004ae03b195abc092f
 ================================================================================
 ```
 
 ### Convert the SBOM to OCI Artifact
 
 ```bash
-$ ./obom push -f ./examples/SPDXJSONExample-v2.3.spdx.json localhost:5001/spdx/annotations:test
-Successfully loaded ./examples/SPDXJSONExample-v2.3.spdx.json
+$ obom push -f ./examples/SPDXJSONExample-v2.3.spdx.json localhost:5001/spdx:example
 ================================================================================
-Some Attributes of the Document:
 Document Name:         SPDX-Tools-v2.0
 DataLicense:           CC0-1.0
 Document Namespace:    http://spdx.org/spdxdocs/spdx-example-444504E0-4F89-41D3-9A0C-0305E82C3301
 SPDX Version:          SPDX-2.3
+Packages:              4
+Files:                 5
+Digest:                sha256:2de3741a7be1be5f5e54e837524f2ec627fedfb82307dc004ae03b195abc092f
 ================================================================================
 Adding ./examples/SPDXJSONExample-v2.3.spdx.json: sha256:2de3741a7be1be5f5e54e837524f2ec627fedfb82307dc004ae03b195abc092f
-Pushing localhost:5001/spdx/annotations:test sha256:558e6788158981743d35f38b2a2668968c800fafddb0afcd681343832bd6e411
+Pushing localhost:5001/spdx:example sha256:07cc47f237cca9b699f2aba6d2684a20ece88268492e577194394030ca52e3de
 
 ```
 
