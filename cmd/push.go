@@ -41,6 +41,8 @@ func pushCmd() *cobra.Command {
 				os.Exit(1)
 			}
 
+			obom.PrintSBOMSummary(sbom)
+
 			annotations, err := obom.GetAnnotations(sbom)
 			if err != nil {
 				fmt.Println("Error getting annotations:", err)

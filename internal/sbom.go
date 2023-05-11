@@ -32,9 +32,11 @@ func LoadSBOM(filename string) (*v2_3.Document, error) {
 		return nil, err
 	}
 
-	// if we got here, the file is now loaded into memory.
-	fmt.Printf("Successfully loaded %s\n", filename)
+	return doc, nil
+}
 
+// PrintSBOMSummary returns the SPDX summary from the SBOM
+func PrintSBOMSummary(doc *v2_3.Document) {
 	fmt.Println(strings.Repeat("=", 80))
 	fmt.Println("Some Attributes of the Document:")
 	fmt.Printf("Document Name:         %s\n", doc.DocumentName)
@@ -42,8 +44,6 @@ func LoadSBOM(filename string) (*v2_3.Document, error) {
 	fmt.Printf("Document Namespace:    %s\n", doc.DocumentNamespace)
 	fmt.Printf("SPDX Version:          %s\n", doc.SPDXVersion)
 	fmt.Println(strings.Repeat("=", 80))
-
-	return doc, nil
 }
 
 // GetAnnotations returns the annotations from the SBOM
@@ -56,4 +56,19 @@ func GetAnnotations(sbom *v2_3.Document) (map[string]string, error) {
 	annotations[OCI_ANNOTATION_SPDX_VERSION] = sbom.SPDXVersion
 
 	return annotations, nil
+}
+
+// GetPackages returns the packages from the SBOM
+func GetPackages(sbom *v2_3.Document) ([]string, error) {
+	var packages []string
+
+	for _, pkg := range sbom.Packages {
+		if pkg.PackageExternalReferences != nil {
+			for _, exRef := range pkg.PackageExternalReferences {
+				packages = append(packages, exRef.Locator)
+			}
+		}
+	}
+
+	return packages, nil
 }

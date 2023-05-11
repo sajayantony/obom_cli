@@ -68,7 +68,9 @@ func init() {
 	// when this action is called directly.
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 
-	rootCmd.AddCommand(showCmd(), pushCmd())
+	rootCmd.AddCommand(showCmd(),
+		pushCmd(),
+		packagesCmd())
 }
 
 // initConfig reads in config file and ENV variables if set.

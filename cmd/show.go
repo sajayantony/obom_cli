@@ -19,11 +19,13 @@ func showCmd() *cobra.Command {
 		Short: "Show the SBOM",
 		Long:  `Show the SBOM`,
 		Run: func(cmd *cobra.Command, args []string) {
-			_, err := obom.LoadSBOM(opts.filename)
+			sbom, err := obom.LoadSBOM(opts.filename)
 			if err != nil {
 				fmt.Println("Error loading SBOM:", err)
 				os.Exit(1)
 			}
+
+			obom.PrintSBOMSummary(sbom)
 		},
 	}
 

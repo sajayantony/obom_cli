@@ -14,6 +14,10 @@ import (
 	"oras.land/oras-go/v2/registry/remote/retry"
 )
 
+const (
+	MEDIATYPE_SPDX = "application/spdx+json"
+)
+
 // PushFiles pushes the SPDX SBOM file to the registry
 func PushFiles(filename string, reference string, spdx_annotations map[string]string, username string, password string) error {
 
@@ -26,7 +30,7 @@ func PushFiles(filename string, reference string, spdx_annotations map[string]st
 	ctx := context.Background()
 
 	// 1. Add files to a file store
-	mediaType := "text/spdx"
+	mediaType := MEDIATYPE_SPDX
 	fileNames := []string{filename}
 	fileDescriptors := make([]v1.Descriptor, 0, len(fileNames))
 	for _, name := range fileNames {
@@ -44,7 +48,7 @@ func PushFiles(filename string, reference string, spdx_annotations map[string]st
 	}
 
 	// 2. Pack the files and tag the packed manifest
-	artifactType := "text/spdx"
+	artifactType := MEDIATYPE_SPDX
 	manifestDescriptor, err := oras.Pack(ctx, fs, artifactType, fileDescriptors, oras.PackOptions{
 		PackImageManifest:   true,
 		ManifestAnnotations: annotations,
