@@ -1,6 +1,6 @@
 # SPDX to OCI Artiafact
 
-This is a simple tool to convert a SPDX to a OCI Artifact and push the SPFX to a target registry with annotations.
+This is a simple tool to convert an SPDX to a OCI Artifact and push the SPDX doc to an OCI registry with annotations.
 
 ## Build
 
