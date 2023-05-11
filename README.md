@@ -93,3 +93,14 @@ pkg:nuget/Microsoft.Extensions.Configuration.Binder@3.1.4
 pkg:nuget/Microsoft.Azure.Storage.Blob@11.1.2
 pkg:nuget/Microsoft.Azure.Storage.File@11.1.2
 ```
+
+## List files
+
+```shell
+obom files -f ./examples/SPDXJSONExample-v2.3.spdx.json
+./src/org/spdx/parser/DOAPProject.java
+./lib-source/commons-lang3-3.1-sources.jar
+./lib-source/jena-2.6.3-sources.jar
+./docs/myspec.pdf
+./package/foo.c
+```

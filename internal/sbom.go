@@ -127,3 +127,13 @@ func GetPackages(sbom *v2_3.Document) ([]string, error) {
 
 	return packages, nil
 }
+
+func GetFiles(sbom *v2_3.Document) ([]string, error) {
+	var files []string
+
+	for _, file := range sbom.Files {
+		files = append(files, file.FileName)
+	}
+
+	return files, nil
+}
