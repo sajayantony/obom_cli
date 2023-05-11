@@ -21,8 +21,10 @@ func pushCmd() *cobra.Command {
 	var opts pushOpts
 	var pushCmd = &cobra.Command{
 		Use:   "push",
-		Short: "Push the SBOM",
-		Long:  `Push the SBOM with the annotations`,
+		Short: "Push the SPDX SBOM to the registry",
+		Long: `Push the SDPX with the annotations to an OCI registry
+Example: obom push -f spdx.json localhost:5000/spdx:latest 
+		`,
 		Run: func(cmd *cobra.Command, args []string) {
 
 			// get the reference as the first argument
@@ -35,13 +37,13 @@ func pushCmd() *cobra.Command {
 				os.Exit(1)
 			}
 
-			sbom, err := obom.LoadSBOM(opts.filename)
+			sbom, desc, err := obom.LoadSBOM(opts.filename)
 			if err != nil {
 				fmt.Println("Error loading SBOM:", err)
 				os.Exit(1)
 			}
 
-			obom.PrintSBOMSummary(sbom)
+			obom.PrintSBOMSummary(sbom, desc)
 
 			annotations, err := obom.GetAnnotations(sbom)
 			if err != nil {

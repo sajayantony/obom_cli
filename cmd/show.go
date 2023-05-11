@@ -16,16 +16,16 @@ func showCmd() *cobra.Command {
 	var opts showOptions
 	var showCmd = &cobra.Command{
 		Use:   "show",
-		Short: "Show the SBOM",
-		Long:  `Show the SBOM`,
+		Short: "Show summay of the spdx",
+		Long:  `Show the SPDX summary fields`,
 		Run: func(cmd *cobra.Command, args []string) {
-			sbom, err := obom.LoadSBOM(opts.filename)
+			sbom, desc, err := obom.LoadSBOM(opts.filename)
 			if err != nil {
 				fmt.Println("Error loading SBOM:", err)
 				os.Exit(1)
 			}
 
-			obom.PrintSBOMSummary(sbom)
+			obom.PrintSBOMSummary(sbom, desc)
 		},
 	}
 

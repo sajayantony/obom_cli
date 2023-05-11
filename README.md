@@ -1,11 +1,21 @@
 # SBOM to OCI Artiafact
 
-This is a simple tool to convert a SBOM to a OCI Artifact and push the SPFX to a target registry with annotations.
+This is a simple tool to convert a SPDX to a OCI Artifact and push the SPFX to a target registry with annotations.
 
-## Build 
+## Build
+
+Run `make` to build the binary or use the following command to build the binary.
+
+```bash
 
 ```bash
 go build -ldflags "-s -w" -o obom main.go
+```
+
+## Install
+
+```bash
+go get github.com/sajayantony/obom
 ```
 
 ## Usage
@@ -41,7 +51,7 @@ Pushing localhost:5001/spdx/annotations:test sha256:558e6788158981743d35f38b2a26
 
 ```
 
-### View the OCI Artifact
+#### View the OCI Artifact
 
 ```bash
 $ oras manifest get localhost:5001/spdx/annotations:test --pretty
@@ -71,4 +81,15 @@ $ oras manifest get localhost:5001/spdx/annotations:test --pretty
     "org.spdx.version": "SPDX-2.3"
   }
 }
+```
+
+## List packages 
+
+```shell
+$ obom packages -f ./temp/manifest.spdx.json | head -5
+pkg:nuget/Microsoft.Extensions.Configuration.Json@3.1.4
+pkg:nuget/Microsoft.Extensions.FileProviders.Abstractions@3.1.4
+pkg:nuget/Microsoft.Extensions.Configuration.Binder@3.1.4
+pkg:nuget/Microsoft.Azure.Storage.Blob@11.1.2
+pkg:nuget/Microsoft.Azure.Storage.File@11.1.2
 ```

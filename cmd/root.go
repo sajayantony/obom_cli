@@ -34,13 +34,21 @@ var cfgFile string
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "obom",
-	Short: "A brief description of your application",
-	Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "OCI SPDX SBOM CLI",
+	Long: `
+________  ________  ________  _____ ______      
+|\   __  \|\   __  \|\   __  \|\   _ \  _   \    
+\ \  \|\  \ \  \|\ /\ \  \|\  \ \  \\\__\ \  \   
+ \ \  \\\  \ \   __  \ \  \\\  \ \  \\|__| \  \  
+  \ \  \\\  \ \  \|\  \ \  \\\  \ \  \    \ \  \ 
+   \ \_______\ \_______\ \_______\ \__\    \ \__\
+    \|_______|\|_______|\|_______|\|__|     \|__|
+	
+obom is a CLI tool for working with OCI SPDX format SBOMs.
+You can use it to inspect packages or upload an SBOM file as an OCI artifact.
+Example:
+	obom push -f ./examples/SPDXJSONExample-v2.3.spdx.json localhost:5001/spdx:example
+`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) { },

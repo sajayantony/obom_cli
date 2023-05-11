@@ -3,7 +3,7 @@ module github.com/sajayantony/obom
 go 1.20
 
 require (
-	github.com/opencontainers/image-spec v1.1.0-rc.3
+	github.com/opencontainers/image-spec v1.1.0-rc3
 	github.com/spdx/tools-golang v0.5.0
 	github.com/spf13/cobra v1.7.0
 	github.com/spf13/viper v1.15.0
