@@ -18,7 +18,20 @@ go get github.com/sajayantony/obom
 
 ## Usage
 
-### View the SBOM to validate it. 
+```
+  obom [command] 
+```
+
+## Sub Commands 
+
+- [obom show](#obom-show) - Show SPDX Document
+- [obom push](#obom-push) - Push SPDX Document to OCI Registry
+- [obom packages](#obom-packages) - List Packages
+- [obom files](#obom-files) - List Files
+
+### obom show
+
+Sub command that shows the SPDX Document summary.
 
 ```bash
 $ obom show -f ./examples/SPDXJSONExample-v2.3.spdx.json
@@ -33,7 +46,11 @@ Digest:                sha256:2de3741a7be1be5f5e54e837524f2ec627fedfb82307dc004a
 ================================================================================
 ```
 
-### Convert the SBOM to OCI Artifact
+### obom push
+
+Sub command that pushes the SPDX Document to an OCI registry and adds annotations to the OCI Artifact.
+Annotations are the SPDX Document properties and can be overriden by the command line flags.
+
 
 ```bash
 $ obom push -f ./examples/SPDXJSONExample-v2.3.spdx.json localhost:5001/spdx:example
@@ -51,7 +68,7 @@ Pushing localhost:5001/spdx:example sha256:07cc47f237cca9b699f2aba6d2684a20ece88
 
 ```
 
-#### View the OCI Artifact
+You can view the manifest of the pushed artifact using the following command.
 
 ```bash
 $ oras manifest get localhost:5001/spdx/annotations:test --pretty
@@ -83,7 +100,9 @@ $ oras manifest get localhost:5001/spdx/annotations:test --pretty
 }
 ```
 
-## List packages 
+## obom packages
+
+Subcommand that lists the packages in the SPDX Document. 
 
 ```shell
 $ obom packages -f ./temp/manifest.spdx.json | head -5
@@ -94,7 +113,9 @@ pkg:nuget/Microsoft.Azure.Storage.Blob@11.1.2
 pkg:nuget/Microsoft.Azure.Storage.File@11.1.2
 ```
 
-## List files
+## obom files
+
+Subcommand that lists the files in the SPDX Document.
 
 ```shell
 obom files -f ./examples/SPDXJSONExample-v2.3.spdx.json
