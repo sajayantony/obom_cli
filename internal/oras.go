@@ -91,7 +91,7 @@ func PushFiles(filename string, reference string, spdx_annotations map[string]st
 		Cache:  auth.DefaultCache,
 	}
 
-	if len(username) != 0 || len(password) != 0 {
+	if len(username) != 0 && len(password) != 0 {
 		client.Credential = auth.StaticCredential(reg, auth.Credential{
 			Username: username,
 			Password: password,
