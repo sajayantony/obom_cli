@@ -16,6 +16,7 @@ import (
 )
 
 const (
+	MEDIATYPE_SPDX                    = "application/spdx+json"
 	OCI_ANNOTATION_DOCUMENT_NAME      = "org.spdx.name"
 	OCI_ANNOTATION_DATA_LICENSE       = "org.spdx.license"
 	OCI_ANNOTATION_DOCUMENT_NAMESPACE = "org.spdx.namespace"

@@ -16,7 +16,7 @@ import (
 )
 
 const (
-	MEDIATYPE_SPDX = "application/spdx+json"
+	APPLICATION_USERAGENT = "obom"
 )
 
 // PushFiles pushes the SPDX SBOM file to the registry
@@ -106,6 +106,7 @@ func PushFiles(filename string, reference string, spdx_annotations map[string]st
 		client.Credential = credentials.Credential(store)
 	}
 
+	client.SetUserAgent(APPLICATION_USERAGENT)
 	repo.Client = client
 
 	//Copy from the file store to the remote repository
