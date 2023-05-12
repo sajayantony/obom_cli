@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	v1 "github.com/opencontainers/image-spec/specs-go/v1"
+	credentials "github.com/oras-project/oras-credentials-go"
 	"oras.land/oras-go/v2"
 	"oras.land/oras-go/v2/content/file"
 	"oras.land/oras-go/v2/registry"
@@ -29,7 +30,7 @@ func PushFiles(filename string, reference string, spdx_annotations map[string]st
 	defer fs.Close()
 	ctx := context.Background()
 
-	// 1. Add files to a file store
+	// Add files to a file store
 	mediaType := MEDIATYPE_SPDX
 	fileNames := []string{filename}
 	fileDescriptors := make([]v1.Descriptor, 0, len(fileNames))
@@ -47,7 +48,7 @@ func PushFiles(filename string, reference string, spdx_annotations map[string]st
 		annotations[k] = v
 	}
 
-	// 2. Pack the files and tag the packed manifest
+	//Pack the files and tag the packed manifest
 	artifactType := MEDIATYPE_SPDX
 	manifestDescriptor, err := oras.Pack(ctx, fs, artifactType, fileDescriptors, oras.PackOptions{
 		PackImageManifest:   true,
@@ -72,7 +73,7 @@ func PushFiles(filename string, reference string, spdx_annotations map[string]st
 		return err
 	}
 
-	// 3. Connect to a remote repository
+	//Connect to a remote repository
 	repo, err := remote.NewRepository(reference)
 	if err != nil {
 		panic(err)
@@ -84,20 +85,30 @@ func PushFiles(filename string, reference string, spdx_annotations map[string]st
 		repo.PlainHTTP = true
 	}
 
-	// Note: The below code can be omitted if authentication is not required
-	// Check if username and passowrd are provided
-	if len(username) != 0 || len(password) != 0 {
-		repo.Client = &auth.Client{
-			Client: retry.DefaultClient,
-			Cache:  auth.DefaultCache,
-			Credential: auth.StaticCredential(reg, auth.Credential{
-				Username: username,
-				Password: password,
-			}),
-		}
+	// Prepare the auth client for the registry
+	client := &auth.Client{
+		Client: retry.DefaultClient,
+		Cache:  auth.DefaultCache,
 	}
 
-	// 3. Copy from the file store to the remote repository
+	if len(username) != 0 || len(password) != 0 {
+		client.Credential = auth.StaticCredential(reg, auth.Credential{
+			Username: username,
+			Password: password,
+		})
+	} else {
+		storeOpts := credentials.StoreOptions{}
+		store, err := credentials.NewStoreFromDocker(storeOpts)
+		if err != nil {
+			return err
+		}
+
+		client.Credential = credentials.Credential(store)
+	}
+
+	repo.Client = client
+
+	//Copy from the file store to the remote repository
 	_, err = oras.Copy(ctx, fs, tag, repo, tag, oras.DefaultCopyOptions)
 	return err
 }
