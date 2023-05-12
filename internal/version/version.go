@@ -1,7 +1,7 @@
 package version
 
 var (
-	Tag          string
+	Version      string
 	GitCommit    string
 	GitTreeState string
 )

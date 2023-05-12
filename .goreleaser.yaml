@@ -14,7 +14,7 @@ builds:
       - windows
       - darwin
     ldflags:
-      - -w -X github.com/sajayantony/obom/internal/version.Version={{.Version}} -X oras.land/oras/internal/version.GitCommit={{.FullCommit}} -X oras.land/oras/internal/version.GitTreeState=clean
+      - -w -X github.com/sajayantony/obom/internal/version.Version={{ .Version }} -X github.com/sajayantony/obom/internal/version.GitCommit={{ .FullCommit }} -X github.com/sajayantony/obom/internal/version.GitTreeState=clean
 
 
 archives:
