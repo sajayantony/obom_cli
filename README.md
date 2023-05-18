@@ -40,6 +40,10 @@ Document Name:         SPDX-Tools-v2.0
 DataLicense:           CC0-1.0
 Document Namespace:    http://spdx.org/spdxdocs/spdx-example-444504E0-4F89-41D3-9A0C-0305E82C3301
 SPDX Version:          SPDX-2.3
+Creation Date:         2010-01-29T18:30:22Z
+Creators:              LicenseFind-1.0
+                       ExampleCodeInspect ()
+                       Jane Doe ()
 Packages:              4
 Files:                 5
 Digest:                sha256:2de3741a7be1be5f5e54e837524f2ec627fedfb82307dc004ae03b195abc092f
