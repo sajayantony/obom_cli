@@ -13,7 +13,7 @@ go build -ldflags "-s -w" -o obom main.go
 ## Install
 
 ```bash
-go get github.com/sajayantony/obom
+go install github.com/sajayantony/obom@latest
 ```
 
 ## Usage
