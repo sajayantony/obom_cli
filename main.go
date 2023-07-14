@@ -21,7 +21,7 @@ THE SOFTWARE.
 */
 package main
 
-import "github.com/sajayantony/obom/cmd"
+import "github.com/Azure/obom/cmd"
 
 func main() {
 	cmd.Execute()

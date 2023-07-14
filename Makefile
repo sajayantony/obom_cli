@@ -2,7 +2,7 @@
 
 # Variables
 
-PROJECT_PKG = github.com/sajayantony/obom
+PROJECT_PKG = github.com/Azure/obom
 BINARY = obom
 SRC = $(wildcard *.go)
 LDFLAGS = -s -w

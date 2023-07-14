@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"runtime/debug"
 
-	"github.com/sajayantony/obom/internal/version"
+	"github.com/Azure/obom/internal/version"
 	"github.com/spf13/cobra"
 )
 
-// -ldflags="-X 'github.com/sajayantony/obom.cmd.Version=$TAG'"
+// -ldflags="-X 'github.com/Azure/obom.cmd.Version=$TAG'"
 
 func init() {
 	if version.Version == "" {

@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	obom "github.com/sajayantony/obom/internal"
+	obom "github.com/Azure/obom/internal"
 	"github.com/spf13/cobra"
 
 	"oras.land/oras-go/v2/registry"

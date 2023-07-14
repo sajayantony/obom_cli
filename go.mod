@@ -1,4 +1,4 @@
-module github.com/sajayantony/obom
+module github.com/Azure/obom
 
 go 1.20
 
